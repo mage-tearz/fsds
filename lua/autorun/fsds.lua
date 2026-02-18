@@ -1,25 +1,29 @@
--- Free Software Derma Sculptor
+fsds = {}
 
-local root = "fsds/"
-
-local function addFile( f, dir )
+function fsds.AddFile( File, directory )
     if SERVER then
-        AddCSLuaFile( dir..f )
-    else
-        include( dir..f )
+        AddCSLuaFile( directory .. File )
+    elseif CLIENT then
+        include( directory .. File )
+		print("including", directory..File )
     end
 end
 
-local function addDir( dir )
-    local files, dirs = file.Find( dir.."*", "LUA" )
+function fsds.IncludeDir( directory )
+	directory = directory .. "/"
 
-    for _, file in ipairs( files ) do
-        if string.EndsWith( file, ".lua" ) then
-            addFile( file, dir )
-        end
-    end
+	local files, directories = file.Find( directory .. "*", "LUA" )
 
-    for _, dir in ipairs( dirs ) do
-        addDir( dir )
-    end
+	for _, v in ipairs( files ) do
+		if string.EndsWith( v, ".lua" ) then
+			fsds.AddFile( v, directory )
+		end
+	end
+
+	for _, v in ipairs( directories ) do
+		fsds.IncludeDir( directory .. v )
+	end
 end
+
+fsds.AddFile( "lib.lua", "fsds/" )
+fsds.AddFile( "text.lua", "fsds/" )
