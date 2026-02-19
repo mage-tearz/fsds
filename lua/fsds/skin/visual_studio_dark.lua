@@ -2,7 +2,7 @@ fsds.theme = {
     background_editor = Color( 30, 30, 30 ),
     background_window = Color( 37, 37, 38 ),
     background_tool   = Color( 45, 45, 48 ),
-    background_panel  = Color( 62, 62, 66 ),
+    background_decoration  = Color( 60, 60, 60 ),
     background_menu   = Color( 51, 51, 51 ),
 
     divider_window = Color( 52, 52, 55 ),
@@ -37,4 +37,9 @@ fsds.theme = {
 
     type_sans = system.IsLinux() and "Roboto Light" or "Roboto-Light",
     type_mono = system.IsLinux() and "Consolas"     or "Consolas",
+    type_icon = "Codicon",
+}
+
+fsds.icp = {
+    folder = "⎙"
 }

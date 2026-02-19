@@ -27,3 +27,8 @@ end
 
 fsds.AddFile( "lib.lua", "fsds/" )
 fsds.AddFile( "text.lua", "fsds/" )
+
+
+fsds.IncludeDir( "fsds/skin" )
+fsds.IncludeDir( "fsds/primitives" )
+fsds.IncludeDir( "fsds/elements" )

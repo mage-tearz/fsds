@@ -11,13 +11,18 @@ function PANEL:Init()
     self.items = {}
 
     self:AddIndicator( function()
-        return "Scale: "..fsds.GetMenuScale()
+        return "greywaterstudio/fsds@"..fsds.version
+    end )
+
+    self:AddIndicator( function()
+        return "Zoom: "..fsds.GetMenuScalePercent()
     end )
 end
 
 function PANEL:AddIndicator( text )
     local b = vgui.Create( "DLabel", self )
-    b:Dock( LEFT )
+    b:Dock( RIGHT )
+    b:DockMargin( s(1), 0, s(1), 0 )
     b:SetTextColor( fsds.theme.text_primary )
 
     if isfunction( text ) then
@@ -29,7 +34,7 @@ function PANEL:AddIndicator( text )
     end
 
     function b:PerformLayout( w, h )
-        self:SetFont( fsds.Font( fsds.theme.type_sans, s(1.5), 400 ) )
+        self:SetFont( fsds.Font( fsds.theme.type_sans, s(1.4), 400 ) )
         self:SizeToContentsX()
     end
 

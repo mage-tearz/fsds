@@ -1,7 +1,13 @@
+fsds.version = "26w08a"
+
 fsds.menuScale = fsds.menuScale or cookie.GetNumber( "fsds::scale", 12 )
 
 function fsds.GetMenuScale()
     return fsds.menuScale
+end
+
+function fsds.GetMenuScalePercent()
+    return (math.Round((fsds.menuScale - 6) / 12, 2) * 100).."%"
 end
 
 function fsds.SetMenuScale( s )
@@ -28,8 +34,3 @@ end
 function fsds.Scale( n )
     return fsds.GetMenuScale() * n
 end
-
-
-fsds.IncludeDir( "fsds/skin" )
-fsds.IncludeDir( "fsds/primitives" )
-fsds.IncludeDir( "fsds/elements" )

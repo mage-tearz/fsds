@@ -51,17 +51,6 @@ function PANEL:GetCursor()
     return "none"
 end
 
-function PANEL:PaintOver( w, h )
-    local mx, my = self:LocalCursorPos()
-
-    local color = input.IsMouseDown( MOUSE_LEFT ) and fsds.theme.status_success or color_white
-    draw.SimpleText( "deltaX: "..self.deltaX, "DebugFixed", 0, 0, color )
-    draw.SimpleText( "deltaX: "..self.deltaY, "DebugFixed", 0, 20, color )
-    draw.SimpleText( "size: "..self:GetWide(), "DebugFixed", 0, 40, color_white )
-
-    draw.SimpleText( "scale: "..fsds.GetMenuScale(), "DebugFixed", 0, 60, color_white )
-end
-
 function PANEL:Think()
     local mx, my = self:LocalCursorPos()
 

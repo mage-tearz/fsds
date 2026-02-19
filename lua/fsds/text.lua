@@ -26,9 +26,9 @@ end
 
 function fsds.GetIdealFontSize( size )
     local scale = fsds.GetMenuScale()
-    local a = scale * size
+    local a = size
 
-    return math.Round( a / 12 ) * 12
+    return math.floor( a / 12 ) * 12
 end
 
 
@@ -38,10 +38,31 @@ end
 --  size: number,
 --  weight: number,
 -- }
+
+local m = Matrix()
+local pos_vec = Vector()
+local scale_vec = Vector()
 function fsds.DrawText( text, font, x, y, color, xa, ya )
+    font.size = font.size * fsds.GetMenuScale()
     local idealFont = fsds.Font(
-        font.type, font.size, font.weight
+        font.type,
+        24,
+        font.weight
     )
 
-    return draw.SimpleText( text, idealFont, x, y, color, xa, ya )
+
+    local state = surface.GetPanelPaintState()
+    x = x + state.translate_x
+    y = y + state.translate_y
+
+    local size = 1  --font.size
+
+
+    pos_vec:SetUnpacked( x, y, 0 )
+    scale_vec:SetUnpacked( size, size, 1 )
+    m:SetTranslation( pos_vec )
+    m:SetScale( scale_vec )
+    cam.PushModelMatrix( m, true )
+        draw.SimpleText( text, idealFont, 0, 0, color, xa, ya )
+    cam.PopModelMatrix()
 end

@@ -53,7 +53,9 @@ end
 function PANEL:PostAutoRefresh()
     if IsValid( self ) then self:Remove() end
 
-    vgui.Create( "greywater::dermasculptor" )
+    timer.Simple( 0.1, function()
+        vgui.Create( "greywater::dermasculptor" )
+    end )
 end
 
 function PANEL:OnKeyCodePressed( key )
